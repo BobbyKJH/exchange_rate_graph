@@ -2,14 +2,20 @@ import { useState } from "react";
 
 import { SelectChangeEvent } from "@mui/material";
 
-const useExchange = () => {
+const useExchange = (initailState: string) => {
   const [exchange, setExchange] = useState<string>("");
 
   const handleExchange = (e: SelectChangeEvent) => {
     const { value } = e.target;
     setExchange(value);
   };
-  return { exchange, setExchange, handleExchange };
+
+  const handleInputExchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setExchange(value);
+  };
+
+  return { exchange, handleExchange, handleInputExchange };
 };
 
 export default useExchange;
