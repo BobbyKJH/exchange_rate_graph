@@ -1,13 +1,9 @@
 import axios from "axios";
-import { ExchangeDate } from "./utils";
 
-export const ExchangeRate = async (
-  date: string = ExchangeDate,
-  currency: string = "krw"
-) => {
+export const ExchangeRate = async (currency: string) => {
   try {
     const { data } = await axios.get(
-      import.meta.env.VITE_EXCHANGE + `/${date}/currencies/${currency}.json`
+      import.meta.env.VITE_EXCHANGE_RATES + `${currency}`
     );
     return data;
   } catch (err) {
