@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import dailogSlice from "./slice/dailogSlice";
+import dialogSlice from "./slice/dialogSlice";
+import { currencySlice } from "./slice/currencySlice";
 
 export const store = configureStore({
   reducer: {
-    dialog: dailogSlice.reducer,
+    dialog: dialogSlice.reducer,
+    currency: currencySlice.reducer,
   },
 });
 
