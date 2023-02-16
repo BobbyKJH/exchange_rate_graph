@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const ExchangeRate = async (currency: string) => {
+export const ExchangeRate = async (query: string) => {
   try {
     const { data } = await axios.get(
-      import.meta.env.VITE_EXCHANGE_RATES + `${currency}`
+      import.meta.env.VITE_EXCHANGE_RATES + `${query}`
     );
     return data;
   } catch (err) {
