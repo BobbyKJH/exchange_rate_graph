@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { Currency } from "../store/slice/currencySlice";
+import { Currency, handleExchangeCurrency } from "../store/slice/currencySlice";
 import { Graph, handleGraphSelect } from "../store/slice/graphSlice";
+
+import { SelectChangeEvent } from "@mui/material/Select";
 
 const useGraph = () => {
   const { currencyKind } = useSelector(Currency);
@@ -9,7 +11,7 @@ const useGraph = () => {
 
   const dispatch = useDispatch();
 
-  const handleExchangeRate = (value: string) => () => {
+  const handleToggleExchange = (value: string) => () => {
     const currentIndex = graphSelect.indexOf(value);
     const newChecked = [...graphSelect];
 
@@ -18,11 +20,21 @@ const useGraph = () => {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     dispatch(handleGraphSelect(newChecked));
   };
 
-  return { currencyKind, graphSelect, handleExchangeRate };
+  const handleCurrencyChange = (e: SelectChangeEvent) => {
+    const { value } = e.target;
+    dispatch(handleExchangeCurrency(value));
+  };
+
+  return {
+    currencyKind,
+    graphSelect,
+
+    handleToggleExchange,
+    handleCurrencyChange,
+  };
 };
 
 export default useGraph;
