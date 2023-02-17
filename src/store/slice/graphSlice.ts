@@ -21,7 +21,6 @@ export const graphSlice = createSlice({
 
 export const { handleGraphSelect } = graphSlice.actions;
 
-export const Graph = (state: { local: { graph: GraphState } }) =>
-  state.local.graph;
+export const Graph = (state: { graph: GraphState }) => state.graph;
 
 export default graphSlice;
